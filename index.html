@@ -291,6 +291,8 @@
       <p><span class="glyphicon glyphicon-phone"></span> 06 1266 4051</p>
       <p><span class="glyphicon glyphicon-envelope"></span> info@mijngegevens.nu</p>
     </div>
+
+   <form id="inzageverzoeken">
     <div class="col-sm-5 slideanim">
       <div class="row">
         <div class="col-sm-6 form-group">
@@ -321,20 +323,57 @@
           <input class="form-control" id="upload" name="upload" placeholder="Jouw id" type="file">
         </div>
          <div class="col-sm-12 form-group">
-          <input class="form-control" id="Accepteer" name="Accepteer" type="checkbox" required> Ik accepteer de voorwaarden en ik heb de afgelopen 6 maanden geen gegevens opgevraagd bij deze bedrijven.
+          <input class="form-group" id="Accepteer" name="Accepteer" type="checkbox" required> Ik accepteer de voorwaarden en ik heb de afgelopen 6 maanden geen gegevens opgevraagd bij deze bedrijven.
         </div>
       </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
       <div class="row">
-        <div class="col-sm-6 form-group">
-          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit">Send</button>
-        </div>
-        <div 
-        class="g-recaptcha col-sm-6 form-group" data-sitekey="6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB">
-        </div>
+      <div 
+        class="col-sm-6 g-recaptcha" data-sitekey="6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB">
+      </div>
+       <div class="col-sm-6 form-group">
+          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit" data-toggle="modal" data-target="#myModal">Send</button>
+      </div>
+
       </div>
     </div>
   </div>
+</div>
+</form>
+
+// de modal om te bedanken
+<div class="container">
+  <h2>Modal Example</h2>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Open modal
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">We gaan aan de slag.</h2>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Bedankt voor het gebruiken van onze dienst. Bedrijven hebben 28 dagen de tijd om te reageren. Het kan dus nog even duren.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 <!-- Add Google Maps 
@@ -402,7 +441,8 @@ $(document).ready(function(){
 
 //api to to submit to CumulusPro when all data is filled in.
   $('#btn-continue').on('click', function () {
-  
+
+ 
     $('#btn-continue').val("Loading..");
     var form = new FormData();
     //gegevens ophalen klant   
@@ -430,7 +470,7 @@ $(document).ready(function(){
     form.append("upload", upload);
 
     console.log('form is gemaakt');
-    
+
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -453,7 +493,11 @@ $(document).ready(function(){
       console.log(status)
       var urlNext = 'Bedanktpagina/bedankt.html';
       if (status == "ok") {
-        window.location.href = urlNext;
+        document.getElementById("inzageverzoeken").reset();
+        
+      } else {
+        alert("Er is iets fout gegaan. Probeer het zo nog eens. Excuus voor het ongemak")
+        
       }
       
     });
