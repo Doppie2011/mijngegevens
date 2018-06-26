@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
   <style>
   body {
       font: 400 15px Lato, sans-serif;
@@ -281,7 +283,7 @@
     <div class="col-sm-7">
       <p><span class="glyphicon glyphicon-info-sign"></span>Als je een inzageverzoek doet, hebben bedrijven gegevens van je nodig om je op te zoeken. Ook hebben ze een kopie van een paspoort, rijbewijs of een ander geldig identificatiedocument nodig. Dit gebruiken zodat ze zeker weten dat ze jouw gegevens naar jouw opsturen.</p><br>
     
-      <p><span class="glyphicon glyphicon-info-sign"></span>Wat doen wij met je gegevens? Niets. Wij slaan je gegevens niet op. We gebruiken het eenmallig voor het aangegeven doel. Namelijk namens jou, jouw gegevens opvragen. Je krijgt dan rechtstreeks van deze bedrijven je gegevens thuis gestuurd. Als we je inzageverzoeken hebben verstuurd dan verwijderen je jouw gegevens meteen uit onze bestanden. </p><br>
+      <p><span class="glyphicon glyphicon-info-sign"></span>Wat doen wij met je gegevens? We gebruiken het eenmallig voor het aangegeven doel. Namelijk namens jou, jouw gegevens opvragen. Je krijgt dan rechtstreeks van deze bedrijven je gegevens thuis gestuurd. Als we je inzageverzoeken hebben verstuurd dan verwijderen je jouw gegevens meteen uit onze bestanden. Als je niet wilt dat we je gevevens doorgeven voor dit doel, dan kun je helaas geen gebruik maken van onze dienst.</p><br>
 
       <p><span class="glyphicon glyphicon-info-sign"></span>Wat gebeurt er als ik gebruik maak van jullie dienst?
       Dan sturen wij per bedrijf een verzoek tot inzage. Zij sturen of per post of per email jouw gegevens naar je toe.<p><br>
@@ -310,7 +312,7 @@
           <input class="form-control" id="Plaats" name="Plaats" placeholder="Plaats" type="text" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          <input class="form-control" id="Email" name="email" placeholder="Email" type="email" required>
         </div>
         <div class="col-sm-6 form-group">
           <input class="form-control" id="Telefoonnummer" name="Telefoonnummer" placeholder="Telefoonnummer" type="text">
@@ -324,8 +326,11 @@
       </div>
       <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
       <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
+        <div class="col-sm-6 form-group">
+          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit">Send</button>
+        </div>
+        <div 
+        class="g-recaptcha col-sm-6 form-group" data-sitekey="6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB">
         </div>
       </div>
     </div>
@@ -393,6 +398,68 @@ $(document).ready(function(){
     });
   });
 })
+
+
+//api to to submit to CumulusPro when all data is filled in.
+  $('#btn-continue').on('click', function () {
+  
+    $('#btn-continue').val("Loading..");
+    var form = new FormData();
+    //gegevens ophalen klant   
+    var title = $('#titel').val();
+    var surname = $("#Achternaam").val();
+    var firstname = $("#Voornaam").val();    
+    var street = $("#Straat").val();
+    var street_number = $("#Huisnummmer").val();
+    var postcode = $("#Postcode").val();
+    var city = $("#Plaats").val();
+    var phonenumber = $("#Telefoonnummer").val();
+    var email = $("#Email").val();
+    var upload = $("#upload").val();
+    
+    //gegevens klant toevoegen aan formulier
+    form.append("title", title);
+    form.append("surname", surname);
+    form.append("firstname", firstname);
+    form.append("street", street);
+    form.append("street_number", street_number);
+    form.append("postcode", postcode);
+    form.append("city", city);
+    form.append("phonenumber", phonenumber);
+    form.append("email", email);
+    form.append("upload", upload);
+
+    console.log('form is gemaakt');
+    
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://effektif-connector.cumuluspro.net/ConnectorService.svc/json/Interact/e4b3571b-40fd-479f-9656-2e230f2f5ac1/createTask",
+      "method": "POST",
+      "headers": {
+        "authKey": "8a420e4c-08f7-488f-b64c-679aa8e9a138",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form,
+      "dataType":'json'
+    }
+
+    $.ajax(settings).done(function (response) {
+
+      var status = response.Status;
+      console.log(status)
+      var urlNext = 'Bedanktpagina/bedankt.html';
+      if (status == "ok") {
+        window.location.href = urlNext;
+      }
+      
+    });
+  });
+  
+
 </script>
 
 </body>
