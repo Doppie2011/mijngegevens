@@ -155,6 +155,18 @@
       -webkit-animation-duration: 1s;
       visibility: visible;
   }
+
+  .modal-dialog {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  bottom: 0;
+  left: 0;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+}
+
   @keyframes slide {
     0% {
       opacity: 0;
@@ -190,6 +202,8 @@
         font-size: 150px;
     }
   }
+
+
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -216,7 +230,7 @@
 
 <div class="jumbotron text-center">
   <h1>Vraag mijn gegevens op</h1> 
-  <p>Krijg van meer dan 100 bedrijven inzage in je gegevens.</p> 
+  <p>Krijg inzage in je gegevens door ze simpel op te vragen.</p> 
 
 </div>
 
@@ -226,7 +240,7 @@
     <div class="col-sm-8">
       <h2>Waarom mijn gegevens opvragen</h2><br>
       <h4>Veel bedrijven hebben gegevens van je zonder dat je het weet. Zij gebruiken deze gegevens voor allerlei doeleinden. Dit kan zijn voor eigen gebruik maar ook om door te verkopen.</h4><br>
-      <p>Met de ingang van de wet Algemene Verordening Gegevensbescherming heb je het recht om bij bedrijven je gegegevens op te vragen. Om je bewust te maken welke bedrijven je gegevens gebruiken, hebben we deze dienst in het leven geroepen. Door 1x je gegevens op te vullen vragen we in 1 klap bij meer dan 100 bedrijven je gegevens op.</p>
+      <p>Met de ingang van de wet Algemene Verordening Gegevensbescherming heb je het recht om bij bedrijven je gegegevens op te vragen. Om je bewust te maken welke bedrijven je gegevens gebruiken, hebben we deze dienst in het leven geroepen. Door 1x je gegevens op te vullen vragen wij bij verschillende bedrijven je gegevens op.</p>
       <br><a href="#Inzage" class="btn btn-default btn-lg" role="button">Krijg Inzage</a>
 
 
@@ -341,15 +355,7 @@
 </div>
 </form>
 
-// de modal om te bedanken
-<div class="container">
-  <h2>Modal Example</h2>
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-  </button>
-
-  <!-- The Modal -->
+<  <!-- The Modal om te bedanken -->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -497,7 +503,7 @@ $(document).ready(function(){
         
       } else {
         alert("Er is iets fout gegaan. Probeer het zo nog eens. Excuus voor het ongemak")
-        
+
       }
       
     });
