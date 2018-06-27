@@ -220,10 +220,11 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="#Inzage">Vraag aan</a></li>
         <li><a href="#Overons">Over ons</a></li>
         <li><a href="#Diensten">Diensten</a></li>
         <li><a href="#Bedrijven">Bedrijven</a></li>
-        <li><a href="#Inzage">Vraag aan</a></li>
+        
       </ul>
     </div>
   </div>
@@ -290,7 +291,7 @@
       <div class="row">
       
       <!-- reCapcha op het formulier -->
-      <div class="col-sm-6 g-recaptcha" id="html_element" >
+      <div class="col-sm-6 g-recaptcha" id="recapcha" >
         
       </div>
       <br>
@@ -429,11 +430,12 @@
 </footer>
 
 <script>
+
 var onloadCallback = function() {
-        grecaptcha.render('html_element', {
-          'sitekey' : '6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB'
-        });
-      };
+    grecaptcha.render('recapcha', {
+      'sitekey' : '6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB'
+    });
+  };
 
 
 $(document).ready(function(){
@@ -474,9 +476,13 @@ $(document).ready(function(){
 
 //api to to submit to CumulusPro when all data is filled in.
     $('#btn-continue').on('click', function () {
+    var responseReCapcha = grecaptcha.getResponse(recapcha)
+    console.log(responseReCapcha);
+
     $('#btn-continue').val("Loading..");
     
-
+    //call recapcha result
+    grecaptcha.getResponse()
 
 
     var selectedFile = document.getElementById('inputid').files[0];
