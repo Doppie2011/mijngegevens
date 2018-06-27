@@ -476,12 +476,11 @@ $(document).ready(function(){
 
 //api to to submit to CumulusPro when all data is filled in.
     $('#btn-continue').on('click', function () {
-    var responseReCapcha = grecaptcha.getResponse()
-    console.log(responseReCapcha);
 
     $('#btn-continue').val("Loading..");
-    
-
+      var responseReCapcha = grecaptcha.getResponse()
+      
+      if(responseReCapcha.length!== 0) {
 
     var selectedFile = document.getElementById('inputid').files[0];
     var form = new FormData();
@@ -542,15 +541,21 @@ $(document).ready(function(){
       var urlNext = 'Bedanktpagina/bedankt.html';
       if (status == "ok") {
         document.getElementById("inzageverzoeken").reset();
+        grecaptcha.reset();
         
       } else {
         alert("Er is iets fout gegaan. Probeer het zo nog eens. Excuus voor het ongemak")
-
+        grecaptcha.reset();
       }
       
     });
+  } else {
+    alert("Recapcha niet ingevuld")
+
+  }
+
   });
-  
+
 
 </script>
 
