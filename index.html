@@ -240,7 +240,7 @@
 <div id="Inzage" class="container-fluid bg-grey">
   <h2 class="text-center">Vraag op</h2>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
       <p><span class="glyphicon glyphicon-info-sign"></span>Als je een inzageverzoek doet, hebben bedrijven gegevens van je nodig om je op te zoeken. Ook hebben ze een kopie van een paspoort, rijbewijs of een ander geldig identificatiedocument nodig. Dit gebruiken zodat ze zeker weten dat ze jouw gegevens naar jouw opsturen.</p><br>
     
       <p><span class="glyphicon glyphicon-info-sign"></span>Wat doen wij met je gegevens? We gebruiken het eenmallig voor het aangegeven doel. Namelijk namens jou, jouw gegevens opvragen. Je krijgt dan rechtstreeks van deze bedrijven je gegevens thuis gestuurd. Als we je inzageverzoeken hebben verstuurd dan verwijderen je jouw gegevens meteen uit onze bestanden. Als je niet wilt dat we je gevevens doorgeven voor dit doel, dan kun je helaas geen gebruik maken van onze dienst.</p><br>
@@ -250,10 +250,10 @@
     </div>
 
    <form id="inzageverzoeken" action="?" method="POST">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
       <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Voornaam" name="Voornaam" placeholder="Voornaam" type="text" required>
+        <div class="col-sm-6">
+          <input class="form-control control-label" id="Voornaam" name="Voornaam" placeholder="Voornaam" type="text" required minlength="1">
         </div>
         <div class="col-sm-6 form-group">
           <input class="form-control" id="Achternaam" name="Achternaam" placeholder="Achternaam" type="text" required>
@@ -271,7 +271,7 @@
           <input class="form-control" id="Plaats" name="Plaats" placeholder="Plaats" type="text" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="Email" name="email" placeholder="Email" type="email" required>
+          <input class="form-control" id="Email" name="email" placeholder="Email" type="email" required pattern>
         </div>
         <div class="col-sm-6 form-group">
           <input class="form-control" id="Telefoonnummer" name="Telefoonnummer" placeholder="Telefoonnummer" type="text">
@@ -296,7 +296,7 @@
       </div>
       <br>
        <div class="col-sm-6 form-group">
-          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit" data-toggle="modal" data-target="#myModal">Send</button>
+          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit" data-toggle="modal" >Send</button>
       </div>
 
       </div>
@@ -483,7 +483,7 @@ $(document).ready(function(){
       var responseReCapcha = grecaptcha.getResponse()
       
       if(responseReCapcha.length!== 0) {
-
+        document.getElementById("myModal")
     var selectedFile = document.getElementById('inputid').files[0];
     var form = new FormData();
 
