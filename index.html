@@ -476,7 +476,7 @@ $(document).ready(function(){
 
 //api to to submit to CumulusPro when all data is filled in.
     $('#btn-continue').on('click', function () {
-    var responseReCapcha = grecaptcha.getResponse(recapcha)
+    var responseReCapcha = grecaptcha.getResponse()
     console.log(responseReCapcha);
 
     $('#btn-continue').val("Loading..");
