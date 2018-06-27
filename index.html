@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Inzage mijn gegevens</title>
+  <title>Mijn gegevens</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
   <style>
   body {
@@ -235,6 +235,76 @@
 
 </div>
 
+<!-- Container (Mijn gegevens opvragen) -->
+<div id="Inzage" class="container-fluid bg-grey">
+  <h2 class="text-center">Vraag op</h2>
+  <div class="row">
+    <div class="col-sm-7">
+      <p><span class="glyphicon glyphicon-info-sign"></span>Als je een inzageverzoek doet, hebben bedrijven gegevens van je nodig om je op te zoeken. Ook hebben ze een kopie van een paspoort, rijbewijs of een ander geldig identificatiedocument nodig. Dit gebruiken zodat ze zeker weten dat ze jouw gegevens naar jouw opsturen.</p><br>
+    
+      <p><span class="glyphicon glyphicon-info-sign"></span>Wat doen wij met je gegevens? We gebruiken het eenmallig voor het aangegeven doel. Namelijk namens jou, jouw gegevens opvragen. Je krijgt dan rechtstreeks van deze bedrijven je gegevens thuis gestuurd. Als we je inzageverzoeken hebben verstuurd dan verwijderen je jouw gegevens meteen uit onze bestanden. Als je niet wilt dat we je gevevens doorgeven voor dit doel, dan kun je helaas geen gebruik maken van onze dienst.</p><br>
+
+      <p><span class="glyphicon glyphicon-info-sign"></span>Wat gebeurt er als ik gebruik maak van jullie dienst?
+      Dan sturen wij per bedrijf een verzoek tot inzage. Zij sturen of per post of per email jouw gegevens naar je toe.<p><br>
+
+      <p><span class="glyphicon glyphicon-phone"></span> 06 1266 4051</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> info@mijngegevens.nu</p>
+    </div>
+
+   <form id="inzageverzoeken" action="?" method="POST">
+    <div class="col-sm-5">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Voornaam" name="Voornaam" placeholder="Voornaam" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Achternaam" name="Achternaam" placeholder="Achternaam" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Straat" name="name" placeholder="Straat" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Huisnummmer" name="Huisnummmer" placeholder="Huisnummmer" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Postcode" name="Postcode" placeholder="Postcode" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Plaats" name="Plaats" placeholder="Plaats" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Email" name="email" placeholder="Email" type="email" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="Telefoonnummer" name="Telefoonnummer" placeholder="Telefoonnummer" type="text">
+        </div>
+        <div class="col-sm-12 form-group">
+          Upload je id hier: <br>
+          <input class="form-control" type="file" id="inputid" name="inputid" accept="" placeholder="jouw id"> 
+        </div>
+         <div class="col-sm-12 form-group">
+          <input class="form-group" id="Accepteer" name="Accepteer" type="checkbox" value="true" required> Ik accepteer de voorwaarden en ik heb de afgelopen 6 maanden geen gegevens opgevraagd bij deze bedrijven.
+        </div>
+      </div>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+      
+      <!-- reCapcha op het formulier -->
+      <div class="col-sm-6 g-recaptcha" id="html_element" >
+        
+      </div>
+      <br>
+       <div class="col-sm-6 form-group">
+          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit" data-toggle="modal" data-target="#myModal">Send</button>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
 <!-- Container (About Section) -->
 <div id="Overons" class="container-fluid">
   <div class="row">
@@ -265,40 +335,6 @@
   </div>
 </div>
 
-<!-- Container (voor bedrijven) -->
-
-<div id="Bedrijven" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Wat kunnen wij voor Bedrijven doen?</h2><br>
-      <h4>Wij helpen bedrijven met de plicht tot informeren van klanten over welke gegevens zij hebben. Zo wordt voldoen aan de AVG heel gemakkelijk. </h4><br>
-      <p>Met de ingang van de wet Algemene Verordening Persoonsgegevens is het veilig en verantwoord van gegevens nog belangrijker geworden. Consumneten hebben een aantal rechten gekregen. Oa het recht op inzage, muteren en verwijderen. Daarnaast hebben ze het recht gekregen dat ze goed worden geinformeerd het doel van verwerking. Wij helpen graag bedrijven met het goed invullen van deze rechten voor de AVG. Dit bespaart u veel tijd en geld en verhoogt de waarde van de opegslagen klantgegevens.</p>
-      <br><a href="#Inzage" class="btn btn-default btn-lg" role="button">Krijg Inzage</a>
-
-
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-tags logo"></span>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-th-list logo slideanim"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Waarom eigenlijk?</h2><br>
-      <h4><strong>Hoezo?</strong> Omdat we vinden dat alleen jij controle mag hebben over je eigen gegevens. We bedenken daarom allerlei diensten zodat jij gemakkelijk de controle krijgt.</h4><br>
-      <p><strong>En</strong> Alleen jij behoort over je gegevens te beschikken en alleen jij bepaalt wie jouw gegevens gebruiken, voor wat, voor hoe lang en wie ze jouw gegevens mogen doorgeven. Nu is dit nog lang niet het geval. Bedrijven gebruiken ontzettend veel klantgegevens. Wij proberen de controle terug te geven.</p>
-    </div>
-  </div>
-</div>
-
-
-
-
 <!-- Container (Services Section) -->
 <div id="Diensten" class="container-fluid text-center">
   <h2>Diensten</h2>
@@ -325,73 +361,37 @@
 </div>
 
 
+<!-- Container (voor bedrijven) -->
 
-
-
-<!-- Container (Mijn gegevens opvragen) -->
-<div id="Inzage" class="container-fluid bg-grey">
-  <h2 class="text-center">Vraag op</h2>
+<div id="Bedrijven" class="container-fluid">
   <div class="row">
-    <div class="col-sm-7">
-      <p><span class="glyphicon glyphicon-info-sign"></span>Als je een inzageverzoek doet, hebben bedrijven gegevens van je nodig om je op te zoeken. Ook hebben ze een kopie van een paspoort, rijbewijs of een ander geldig identificatiedocument nodig. Dit gebruiken zodat ze zeker weten dat ze jouw gegevens naar jouw opsturen.</p><br>
-    
-      <p><span class="glyphicon glyphicon-info-sign"></span>Wat doen wij met je gegevens? We gebruiken het eenmallig voor het aangegeven doel. Namelijk namens jou, jouw gegevens opvragen. Je krijgt dan rechtstreeks van deze bedrijven je gegevens thuis gestuurd. Als we je inzageverzoeken hebben verstuurd dan verwijderen je jouw gegevens meteen uit onze bestanden. Als je niet wilt dat we je gevevens doorgeven voor dit doel, dan kun je helaas geen gebruik maken van onze dienst.</p><br>
-
-      <p><span class="glyphicon glyphicon-info-sign"></span>Wat gebeurt er als ik gebruik maak van jullie dienst?
-      Dan sturen wij per bedrijf een verzoek tot inzage. Zij sturen of per post of per email jouw gegevens naar je toe.<p><br>
-
-      <p><span class="glyphicon glyphicon-phone"></span> 06 1266 4051</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> info@mijngegevens.nu</p>
+    <div class="col-sm-8">
+      <h2>Wat wij voor bedrijven doen</h2><br>
+      <h4>Wij helpen bedrijven met de plicht tot informeren van klanten over welke gegevens zij hebben. Zo wordt voldoen aan de AVG heel gemakkelijk. </h4><br>
+      <p>Met de ingang van de wet Algemene Verordening Persoonsgegevens is het veilig en verantwoord gebruiken van gegevens nog belangrijker geworden. Consumenten hebben een aantal rechten gekregen. Oa het recht op inzage, muteren en verwijderen. Daarnaast hebben ze het recht gekregen dat ze goed worden geinformeerd het doel van verwerking. Wij helpen graag bedrijven met het goed invullen van deze rechten voor de AVG. </p>
+      
     </div>
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo"></span>
+    </div>
+  </div>
+</div> 
 
-   <form id="inzageverzoeken">
-    <div class="col-sm-5 slideanim">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Voornaam" name="Voornaam" placeholder="Voornaam" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Achternaam" name="Achternaam" placeholder="Achternaam" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Straat" name="name" placeholder="Straat" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Huisnummmer" name="Huisnummmer" placeholder="Huisnummmer" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Postcode" name="Postcode" placeholder="Postcode" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Plaats" name="Plaats" placeholder="Plaats" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Email" name="email" placeholder="Email" type="email" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="Telefoonnummer" name="Telefoonnummer" placeholder="Telefoonnummer" type="text">
-        </div>
-        <div class="col-sm-12 form-group">
-          <input class="form-control" id="upload" name="upload" placeholder="Jouw id" type="file">
-        </div>
-         <div class="col-sm-12 form-group">
-          <input class="form-group" id="Accepteer" name="Accepteer" type="checkbox" required> Ik accepteer de voorwaarden en ik heb de afgelopen 6 maanden geen gegevens opgevraagd bij deze bedrijven.
-        </div>
-      </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-      <div 
-        class="col-sm-6 g-recaptcha" data-sitekey="6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB">
-      </div>
-       <div class="col-sm-6 form-group">
-          <button class="btn btn-default pull-right" id="btn-continue" name="btn-continue"  type="submit" data-toggle="modal" data-target="#myModal">Send</button>
-      </div>
-
-      </div>
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-th-list logo slideanim"></span>
+    </div>
+    <div class="col-sm-8">
+      <h2>Waarom eigenlijk?</h2><br>
+      <h4><strong>Persoonsgevens zijn nodig voor het goed uitvoeren van processen</strong></h4>Bedrijven hebben persoonsgegevens nodig om hun activiteiten uit te kunnen voeren. Opslag en gebruik zijn dus noodzakelijk. Door consumenten goed te informeren door makkelijk inzage te geven, kunt u de gegevens gewoon blijven gebruiken en kunnen u klanten gemakkelijk hun gegevens bijwerken.<br>
+      
     </div>
   </div>
 </div>
-</form>
+
+
+
 
 <  <!-- The Modal om te bedanken -->
   <div class="modal" id="myModal">
@@ -420,24 +420,6 @@
   
 </div>
 
-<!-- Add Google Maps 
-
-<div id="googleMap" style="height:400px;width:100%;"></div>
-<script>
-function myMap() {
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-var marker = new google.maps.Marker({position:myCenter});
-marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
 
 <footer class="container-fluid text-center">
   <a href="#myPage" title="To Top">
@@ -447,6 +429,13 @@ Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
 </footer>
 
 <script>
+var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LfQxGAUAAAAAB2uUFJ3pUMYUt5NPAB32AOq01yB'
+        });
+      };
+
+
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
@@ -484,11 +473,17 @@ $(document).ready(function(){
 
 
 //api to to submit to CumulusPro when all data is filled in.
-  $('#btn-continue').on('click', function () {
-
- 
+    $('#btn-continue').on('click', function () {
     $('#btn-continue').val("Loading..");
+    
+
+
+
+    var selectedFile = document.getElementById('inputid').files[0];
     var form = new FormData();
+
+
+
     //gegevens ophalen klant   
     var title = $('#titel').val();
     var surname = $("#Achternaam").val();
@@ -499,8 +494,12 @@ $(document).ready(function(){
     var city = $("#Plaats").val();
     var phonenumber = $("#Telefoonnummer").val();
     var email = $("#Email").val();
-    var upload = $("#upload").val();
+    var selectedFile = document.getElementById('inputid').files[0];
+    var accepteer = $("Accepteer").val();
     
+    console.log(selectedFile);
+
+
     //gegevens klant toevoegen aan formulier
     form.append("title", title);
     form.append("surname", surname);
@@ -511,7 +510,8 @@ $(document).ready(function(){
     form.append("city", city);
     form.append("phonenumber", phonenumber);
     form.append("email", email);
-    form.append("upload", upload);
+    form.append("file", selectedFile);
+    form.append("accepteer", accepteer);
 
     console.log('form is gemaakt');
 
