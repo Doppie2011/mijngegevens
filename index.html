@@ -220,10 +220,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#Inzage">Vraag aan</a></li>
+        <li><a href="#Inzage">Vraag op</a></li>
         <li><a href="#Overons">Over ons</a></li>
         <li><a href="#Diensten">Diensten</a></li>
-        <li><a href="#Bedrijven">Bedrijven</a></li>
+        <li><a href="#Bedrijven">Voor Bedrijven</a></li>
         
       </ul>
     </div>
@@ -441,6 +441,9 @@ var onloadCallback = function() {
 
 
 $(document).ready(function(){
+  //disables submit button
+  document.getElementById("btn-continue").disabled = true;
+
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
     // Make sure this.hash has a value before overriding default behavior
